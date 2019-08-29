@@ -6,6 +6,7 @@
 
 <script>
 import echarts from 'echarts'
+import {on,off} from '@/api/tools'
 
 export default {
     name: 'graph',
@@ -20,6 +21,9 @@ export default {
         this.initgraph()
     },
     methods: {
+        resize () {
+            this.graph.resize()
+        },
         initgraph () {
             let ths =this
             let data = this.axisData.map(function (item, i) {
@@ -70,7 +74,11 @@ export default {
             }
             this.graph = echarts.init(this.$refs.graph)
             this.graph.setOption(this.graphOption)
+            on(window,'resize',this.resize)
         }
+    },
+    beforeDestroy() {
+        off(window,'resize',this.resize)
     },
 }
 </script>

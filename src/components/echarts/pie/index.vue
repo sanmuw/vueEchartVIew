@@ -6,6 +6,7 @@
 
 <script>
 import echarts from 'echarts'
+import {on,off} from '@/api/tools'
 
 export default {
     name:'piesimple',
@@ -19,6 +20,9 @@ export default {
         this.initpie()
     },
     methods: {
+        resize () {
+            this.piesimple.resize()
+        },
         initpie () {
             this.pieOption = {
                 tooltip: {
@@ -117,7 +121,11 @@ export default {
 
             this.piesimple = echarts.init(document.getElementById('piesimple'))
             this.piesimple.setOption(this.pieOption)
+            on(window,'resize',this.resize)
         }
+    },
+    beforeDestroy() {
+        off(window,'resize',this.resize)
     },
 }
 </script>

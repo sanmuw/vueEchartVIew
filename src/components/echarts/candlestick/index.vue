@@ -7,6 +7,7 @@
 <script>
 import echarts from 'echarts'
 import rawData from './rawData'
+import {on,off} from '@/api/tools'
 
 export default {
     name:'candlestick',
@@ -21,6 +22,9 @@ export default {
         this.initcandlestick()
     }, 
     methods: {
+        resize () {
+            this.candlestick.resize()
+        },
         calculateMA(dayCount, data) {
             let result = [];
             for (var i = 0, len = data.length; i < len; i++) {
@@ -171,7 +175,11 @@ export default {
             }
             this.candlestick = echarts.init(this.$refs.candlestick)
             this.candlestick.setOption(this.candlOption)
+            on(window,'resize',this.resize)
         }
+    },
+    beforeDestroy() {
+        off(window,'resize',this.resize)
     },
 }
 </script>

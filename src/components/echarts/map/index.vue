@@ -8,6 +8,7 @@
 import echarts from 'echarts'
 import geoCoordMap from './data/geoCoordMap.json'
 import '../../../../node_modules/echarts/map/js/china'
+import {on,off} from '@/api/tools'
 // import tdTheme from './data/theme.json'
 // echarts.registerTheme('tdTheme', tdTheme)
 
@@ -215,6 +216,9 @@ export default {
         this.initMap()
     },
     methods: {
+        resize () {
+            this.mymap.resize()
+        },
         initMap () {
             console.log(123)
             let ths = this
@@ -338,7 +342,11 @@ export default {
             }
             this.mymap = echarts.init(this.$refs.mymap)
             this.mymap.setOption(this.option)
+            on(window,'resize',this.resize)
         }
+    },
+    beforeDestroy() {
+        off(window,'resize',this.resize)
     },
 }
 </script>

@@ -6,19 +6,28 @@
 
 <script>
 import echarts from 'echarts'
-
+import {on,off} from '@/api/tools'
 export default {
     name:'barsimple',
     data () {
         return {
             barsimple: null,
-            option:{}
+            option:{},
         }
     },
     mounted() {
+        // window.onresize = () => {
+        //     return (() =>{
+        //         console.log(1)
+        //         this.initbarsimple()
+        //     })()
+        // }
         this.initbarsimple()
     },
     methods:{
+        resize () {
+            this.barsimple.resize()
+        },
         initbarsimple () {
             this.option = {
                 xAxis: {
@@ -36,7 +45,12 @@ export default {
 
             this.barsimple = echarts.init(document.getElementById('barsimple'))
             this.barsimple.setOption(this.option)
+            // this.barsimple.resize()
+            on(window,'resize',this.resize)
         }
+    },
+    beforeDestroy() {
+        off(window,'resize',this.resize)
     },
 }
 </script>

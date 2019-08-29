@@ -7,6 +7,8 @@
 <script>
 import echarts from 'echarts'
 import ecStat from 'echarts-stat'
+import {on,off} from '@/api/tools'
+
 export default {
     name:'regression',
     data() {
@@ -39,6 +41,9 @@ export default {
         this.initregression()
     },
     methods: {
+        resize () {
+            this.regression.resize()
+        },
         initregression () {
             let myRegression = ecStat.regression('exponential', this.data)
             myRegression.points.sort(function(a, b) {
@@ -119,7 +124,11 @@ export default {
             }
             this.regression = echarts.init(document.getElementById('regression'))
             this.regression.setOption(this.regOption)
+            on(window,'resize',this.resize)
         }
+    },
+    beforeDestroy() {
+        off(window,'resize',this.resize)
     },
 }
 </script>

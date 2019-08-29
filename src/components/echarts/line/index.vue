@@ -6,6 +6,7 @@
 
 <script>
 import echarts from 'echarts'
+import {on,off} from '@/api/tools'
 // require('echarts/lib/chart/line')
 
 export default {
@@ -20,6 +21,9 @@ export default {
         this.initline()
     },
     methods: {
+        resize () {
+            this.lineEchart.resize()
+        },
         initline () {
             this.option = {
                 xAxis: {
@@ -36,7 +40,11 @@ export default {
             }
             this.lineEchart = echarts.init(document.getElementById('barline'))
             this.lineEchart.setOption(this.option)
+            on(window,'resize',this.resize)
         },
+    },
+    beforeDestroy() {
+        off(window,'resize',this.resize)
     },
 }
 </script>

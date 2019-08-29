@@ -6,7 +6,7 @@
 
 <script>
 import echarts from 'echarts'
-
+import {on,off} from '@/api/tools'
 
 export default {
     name:'myradar',
@@ -20,6 +20,9 @@ export default {
         this.initradar()
     },
     methods: {
+        resize () {
+            this.myradar.resize()
+        },
         initradar () {
             this.radarOption = {
                 title: {
@@ -66,8 +69,12 @@ export default {
             }
             this.myradar = echarts.init(this.$refs.myradar)
             this.myradar.setOption(this.radarOption)
+            on(window,'resize',this.resize)
         }   
-    }
+    },
+    beforeDestroy() {
+        off(window,'resize',this.resize)
+    },
 
 }
 </script>
