@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Login from '@/view/Login/index'
 import Home from '@/view/Home/index'
+import Sdview from '@/view/Sdview/index'
 
 Vue.use(Router)
 
@@ -21,6 +22,11 @@ export default new Router({
             path: '/home',
             name: 'Home',
             component: Home
+        },
+        {
+            path: '/sdview',
+            name: 'Sdview',
+            component: Sdview
         },
         {
             path: '/',
