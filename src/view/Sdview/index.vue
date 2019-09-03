@@ -1,36 +1,36 @@
 <template>
-    <div class="Dview">
+    <div class="Dview" id="particles">
         <div class="HeaderBar">
             <t-header :headertitle="headertitle"></t-header>
         </div>
         <div class="maincontain">
-        <el-row :gutter="20">
-            <el-col :span="7">
-                <div class="grid-content bg-purple glleft">
-                    <div class="col"><gl-bar style="width:100%;height:100%"></gl-bar></div>
-                    <div class="col"><gl-surface style="width:100%;height:100%"></gl-surface></div>
-                    <div class="col"><gl-orthographic style="width:100%;height:100%">></gl-orthographic></div>
-                </div>
-            </el-col>
-            <el-col :span="10">
-                <div class="grid-content bg-purple mid">
-                    <div class="earth">
-                        <gl-map style="width:100%;height:100%;"></gl-map>
+            <el-row :gutter="20">
+                <el-col :span="7">
+                    <div class="grid-content bg-purple glleft">
+                        <div class="col"><gl-bar style="width:100%;height:100%"></gl-bar></div>
+                        <div class="col"><gl-surface style="width:100%;height:100%"></gl-surface></div>
+                        <div class="col"><gl-orthographic style="width:100%;height:100%">></gl-orthographic></div>
                     </div>
-                    <div class="otherchart">
-                        <gl-bar style="width:100%;height:100%"></gl-bar>
-                    </div>
+                </el-col>
+                <el-col :span="10">
+                    <div class="grid-content bg-purple mid">
+                        <div class="earth">
+                            <gl-map style="width:100%;height:100%;"></gl-map>
+                        </div>
+                        <div class="otherchart">
+                            <gl-bar style="width:100%;height:100%"></gl-bar>
+                        </div>
 
-                </div>
-            </el-col>
-            <el-col :span="7">
-                <div class="grid-content bg-purple glright">
-                    <div class="col"><gl-bar style="width:100%;height:100%"></gl-bar></div>
-                    <div class="col"><gl-surface style="width:100%;height:100%"></gl-surface></div>
-                    <div class="col"><gl-orthographic style="width:100%;height:100%">></gl-orthographic></div>
-                </div>
-            </el-col>
-        </el-row>
+                    </div>
+                </el-col>
+                <el-col :span="7">
+                    <div class="grid-content bg-purple glright">
+                        <div class="col"><gl-bar style="width:100%;height:100%"></gl-bar></div>
+                        <div class="col"><gl-surface style="width:100%;height:100%"></gl-surface></div>
+                        <div class="col"><gl-orthographic style="width:100%;height:100%">></gl-orthographic></div>
+                    </div>
+                </el-col>
+            </el-row>
         </div>
     </div>
 </template>
@@ -41,12 +41,18 @@ import GlMap from '@/components/echarts/3D/map/index'
 import GlBar from '@/components/echarts/3D/bar/index'
 import GlSurface from '@/components/echarts/3D/surface/index'
 import GlOrthographic from '@/components/echarts/3D/orthographic/index'
+// import particlesJs from 'particles.js'
+// import particlesConfig from '../../components/Background/particles.json'
 
 export default {
     data() {
         return {
             headertitle:'Echarts3D可视化'
         }
+    },
+    mounted() {
+        // particlesJS("particles",particlesConfig)
+        // particlesJs.load('particles',particlesConfig)
     },
     components:{
         THeader,
@@ -60,7 +66,15 @@ export default {
 
 <style lang="less" scoped>
     @import './sdview';
-
+    // #particles{
+    //   position: absolute;
+    //   width: 100%;
+    //   height: 100%;
+    //   background-color: #b61924;
+    //   background-repeat: no-repeat;
+    //   background-size: cover;
+    //   background-position: 50% 50%;
+    // }
     .HeaderBar{
         height:  10vh;
     }

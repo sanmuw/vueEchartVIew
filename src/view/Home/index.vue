@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <m-header></m-header>
+    <div class="schart">
+        <m-header :mheadertitle="mheadertitle"></m-header>
         <div class="comtain">
             <el-row :gutter="20" class="comtent">
                 <el-col :span="7">
@@ -59,7 +59,7 @@ export default {
     name: 'Home',
     data() {
         return{
-
+          mheadertitle: "大屏展示"
         }
     },
     methods: {
@@ -79,7 +79,8 @@ export default {
 }
 </script>
 
-<style lang=less scoped>
+<style lang="less" scoped>
+@import './home.less';
   .comtain {
       margin-top: 0.5rem;
   }
@@ -96,13 +97,13 @@ export default {
     border-radius: 4px;
   }
   .bg-purple-dark {
-    background: #99a9bf;
+    /* background: #99a9bf; */
   }
   .bg-purple {
-    background: #d3dce6;
+    /* background: #d3dce6; */
   }
   .bg-purple-light {
-    background: #e5e9f2;
+    /* background: #e5e9f2; */
   }
   .grid-content {
     border-radius: 4px;
@@ -111,6 +112,6 @@ export default {
   }
   .row-bg {
     padding: 10px 0;
-    background-color: #f9fafc;
+    /* background-color: #f9fafc; */
   }  
 </style>
