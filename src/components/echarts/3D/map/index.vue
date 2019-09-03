@@ -1,12 +1,14 @@
 <template>
     <div>
-        <div id="glmap" class="glmap"></div>
+        <div ref="glmap" class="glmap"></div>
     </div>
 </template>
 
 <script>
 import echarts from 'echarts'
 import 'echarts-gl'
+import {on,off} from '@/api/tools'
+
 export default {
     data() {
         return {
@@ -18,6 +20,9 @@ export default {
         this.initglmap()
     },
     methods: {
+        resize () {
+            this.glmap.resize()
+        },
         initglmap(){
             this.gloption = {
                 globe: {
@@ -47,16 +52,20 @@ export default {
                 }
             }
 
-            this.glmap = echarts.init(document.getElementById('glmap'))
+            this.glmap = echarts.init(this.$refs.glmap)
             this.glmap.setOption(this.gloption)
+            on(window,'resize',this.resize)
         }
+    },
+    beforeDestroy() {
+        off(window,'resize',this.resize)
     },
 }
 </script>
 
 <style lang=less scoped>
     .glmap {
-        width: 600px;
-        height: 600px;
+        width: 100%;
+        height: 100%;
     }
 </style>
